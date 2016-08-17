@@ -31,8 +31,9 @@ RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-s
 	&& apt-get update \
   	&& apt-get install -y --no-install-recommends \
       oracle-java8-installer ca-certificates-java \
-  	&& rm -rf /var/lib/apt/lists/* /var/cache/oracle-jdk8-installer/*.tar.gz /usr/lib/jvm/java-8-oracle/src.zip /usr/lib/jvm/java-8-oracle/javafx-src.zip \
-      /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts \
+        && apt-get install -y --no-install-recommends \
+      oracle-java7-installer ca-certificates-java \
+  	&& rm -rf /var/lib/apt/lists/* /var/cache/oracle-*-installer/*.tar.gz /usr/lib/jvm/java-*-oracle/src.zip /usr/lib/jvm/java-*-oracle/javafx-src.zip \
   	&& ln -s /etc/ssl/certs/java/cacerts /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts \
   	&& update-ca-certificates
 
@@ -93,7 +94,7 @@ RUN apt-add-repository ppa:brightbox/ruby-ng \
 	&& apt-get install -y ruby2.1 ruby2.1-dev ruby ruby-switch unzip \
 	iptables lxc fontconfig libffi-dev build-essential git python-dev libssl-dev python-pip \
 	&& rm -rf /var/lib/apt/lists/*
-
+	
 # Install httpie (with SNI), awscli, docker-compose
 RUN pip install --upgrade pyopenssl pyasn1 ndg-httpsclient httpie awscli docker-compose==1.6.0
 RUN ruby-switch --set ruby2.1
