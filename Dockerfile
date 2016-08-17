@@ -34,7 +34,7 @@ RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-s
         && apt-get install -y --no-install-recommends \
       oracle-java7-installer ca-certificates-java \
   	&& rm -rf /var/lib/apt/lists/* /var/cache/oracle-*-installer/*.tar.gz /usr/lib/jvm/java-*-oracle/src.zip /usr/lib/jvm/java-*-oracle/javafx-src.zip \
-      /usr/lib/jvm/java-*-oracle/jre/lib/security/cacerts
+      /usr/lib/jvm/java-*-oracle/jre/lib/security/cacerts \
   	&& ln -s /etc/ssl/certs/java/cacerts /usr/lib/jvm/java-7-oracle/jre/lib/security/cacerts \
   	&& ln -s /etc/ssl/certs/java/cacerts /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts \
   	&& update-ca-certificates
